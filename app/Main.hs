@@ -64,17 +64,14 @@ toRepoDir repo = reposDir </> name
 createRepo :: Repo -> IO ()
 createRepo repo = do
   let repoDir = toRepoDir repo
-  let cmd = "git clone " ++ (url repo) ++ " " ++ repoDir
-  putStrLn $ "running: " ++ cmd
-  _ <- createProcess $ shell cmd
+  _ <- readProcess "git" ["clone", url repo, repoDir] ""
   return ()
 
 updateRepo :: Repo -> IO ()
 updateRepo repo = do
   let repoDir = toRepoDir repo
   setCurrentDirectory repoDir
-  let cmd = "git pull"
-  _ <- createProcess $ shell cmd
+  _ <- readProcess "git" ["pull"] ""
   return ()
 
 pullRepo :: Repo -> IO ()
@@ -100,7 +97,6 @@ repoStats repo = do
                                                                                                     , blank = b
                                                                                                     , comment = c
                                                                                                     , code = loc }) stats }
-
 
 
 aggregateLanguageStats :: [LanguageStats] -> LanguageStats
