@@ -1,0 +1,21 @@
+Configuring cassava-0.4.4.0...
+Building cassava-0.4.4.0...
+Preprocessing library cassava-0.4.4.0...
+
+Data/Csv/Conversion.hs:9:5: Warning:
+    -XOverlappingInstances is deprecated: instead use per-instance pragmas OVERLAPPING/OVERLAPPABLE/OVERLAPS
+[ 1 of 11] Compiling Data.Csv.Compat.Monoid ( Data/Csv/Compat/Monoid.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Compat/Monoid.o )
+[ 2 of 11] Compiling Data.Csv.Conversion.Internal ( Data/Csv/Conversion/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Conversion/Internal.o )
+[ 3 of 11] Compiling Data.Csv.Util    ( Data/Csv/Util.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Util.o )
+[ 4 of 11] Compiling Data.Csv.Types   ( Data/Csv/Types.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Types.o )
+[ 5 of 11] Compiling Data.Csv.Parser  ( Data/Csv/Parser.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Parser.o )
+[ 6 of 11] Compiling Data.Csv.Conversion ( Data/Csv/Conversion.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Conversion.o )
+[ 7 of 11] Compiling Data.Csv.Encoding ( Data/Csv/Encoding.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Encoding.o )
+[ 8 of 11] Compiling Data.Csv.Builder ( Data/Csv/Builder.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Builder.o )
+[ 9 of 11] Compiling Data.Csv.Incremental ( Data/Csv/Incremental.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Incremental.o )
+[10 of 11] Compiling Data.Csv.Streaming ( Data/Csv/Streaming.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv/Streaming.o )
+[11 of 11] Compiling Data.Csv         ( Data/Csv.hs, .stack-work/dist/x86_64-osx/Cabal-1.22.4.0/build/Data/Csv.o )
+In-place registering cassava-0.4.4.0...
+Installing library in
+/Users/davidrusu/.stack/snapshots/x86_64-osx/lts-3.6/7.10.2/lib/x86_64-osx-ghc-7.10.2/cassava-0.4.4.0-2ph509lC6BmK1BRDAbjHYd
+Registering cassava-0.4.4.0...

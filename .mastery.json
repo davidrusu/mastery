@@ -1,0 +1,9 @@
+{
+    "emails": [ "davidrusu.me@gmail.com",
+                "dave809@gmail.com" ],
+    "repos": [ { "name": "Type The Web",
+                 "url": "https://github.com/davidrusu/type-the-web.git" },
+               { "name": "MonadSweeper",
+                 "url": "https://github.com/davidrusu/MonadSweeper.git"}]
+
+}
