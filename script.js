@@ -24,20 +24,24 @@ $(document).ready(function() {
         langDiv.append(progressBar(lang.code, locGoal, color));
         $("#container").append(langDiv);
         var allRepoStats = $('<div class="perRepoStats">');
-        var repos = stats_json.allRepos.filter(function(repo) {
+        var repos = stats_json.allRepos.map(function(repo) {
             var matchingLanguages = repo.languages.filter(function(repoLang) {
                 return repoLang.language === lang.language;
             });
-            return matchingLanguages.length > 0;
+            var newRepo = JSON.parse(JSON.stringify(repo)); // safe since repo is a simple json obj.
+            newRepo.languages = matchingLanguages;
+            return newRepo;
         });
-        console.log(lang.language, repos);
+        repos = repos.filter(function(repo) {
+            return repo.languages.length > 0;
+        });
+        repos.sort(function(a,b) {
+            return b.languages[0].code - a.languages[0].code;
+        }); 
         repos.forEach(function(repo) {
-            var matchingLanguages = repo.languages.filter(function(repoLang) {
-                return repoLang.language == lang.language;
-            });
-            var code = matchingLanguages[0].code;
+            var code = repo.languages[0].code;
             var repoStats = $('<span class="repoStats">');
-            repoStats.append($('<div class="repoName">').text(repo.repo.name));
+            repoStats.append($('<a href="'+repo.repo.url+'" class="repoName">').text(repo.repo.name));
             repoStats.append($('<div class="repoCode">').text(code));
             repoStats.append($('<div class="repoProgress">').append(progressBar(code, lang.code, color)));
             allRepoStats.append(repoStats);

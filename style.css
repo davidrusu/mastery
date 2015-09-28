@@ -60,6 +60,7 @@ body {
 
 .repoName {
     display: inline-block;
+    color: #ffffff;
     width: 40%;
 }
 
