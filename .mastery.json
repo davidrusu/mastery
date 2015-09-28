@@ -4,6 +4,14 @@
     "repos": [ { "name": "Type The Web",
                  "url": "https://github.com/davidrusu/type-the-web.git" },
                { "name": "MonadSweeper",
-                 "url": "https://github.com/davidrusu/MonadSweeper.git"}]
+                 "url": "https://github.com/davidrusu/MonadSweeper.git"},
+               { "name": "Mastery",
+                 "url": "https://github.com/davidrusu/mastery.git"},
+               { "name": "Muzei Desktop",
+                 "url": "https://github.com/davidrusu/muzei-desktop.git"},
+               { "name": "Markov Chain",
+                 "url": "https://github.com/davidrusu/markov_chain.git"},
+               { "name": "Laurier Course Graph",
+                 "url": "https://github.com/davidrusu/LaurierCourseGraph.git"}]
 
 }

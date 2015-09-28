@@ -1,0 +1,78 @@
+body {
+    background-color: #3C3F45;
+    color: #ffffff;
+    font-family: courier new;
+}
+
+#title {
+    text-align: center;
+    font-size: 36pt;
+    padding: 50px;
+}
+
+#container {
+    width: 75%;
+    margin:auto;
+}
+
+.lang:hover {
+    background-color: #323437;
+}
+.lang {
+    position: relative;
+    padding: 15px;
+    border-radius: 2px;
+}
+
+.langHead {
+    padding: 1;
+    font-size: 18pt;
+}
+
+.langName {
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+}
+
+.langStats {
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+}
+
+.progressOuter {
+    margin-top: 15px;
+    width: 100%;
+    background-color: #ffffff;
+    height: 18px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressInner {
+    background-color: #ff0000;
+    height: 100%;
+}
+
+.repoStats {
+}
+
+.repoName {
+    display: inline-block;
+    width: 40%;
+}
+
+.repoCode {
+    display: inline-block;
+    width: 10%;
+}
+
+.repoProgress {
+    display: inline-block;
+    width: 50%;
+}
+
+.perRepoStats {
+    width: 100%;
+}

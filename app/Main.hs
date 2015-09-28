@@ -9,7 +9,7 @@ import System.FilePath.Posix ((</>))
 import System.IO.Unsafe (unsafePerformIO)
 
 import Data.Aeson (ToJSON, FromJSON, decode, encode, decode')
-import Data.List (tails, groupBy)
+import Data.List (tails, groupBy, sortBy)
 import Control.Exception (catch)
 import qualified Data.ByteString.Lazy as BS
 import qualified Data.ByteString.Lazy.Char8 as BSC
@@ -63,12 +63,14 @@ toRepoDir repo = reposDir </> name
 
 createRepo :: Repo -> IO ()
 createRepo repo = do
+  putStrLn $ "cloning " ++ (name repo)
   let repoDir = toRepoDir repo
   _ <- readProcess "git" ["clone", url repo, repoDir] ""
   return ()
 
 updateRepo :: Repo -> IO ()
 updateRepo repo = do
+  putStrLn $ "updating " ++ (name repo)
   let repoDir = toRepoDir repo
   setCurrentDirectory repoDir
   _ <- readProcess "git" ["pull"] ""
@@ -83,11 +85,8 @@ pullRepo repo = do
 repoStats :: Repo -> IO (RepoStats)
 repoStats repo = do
   let repoDir = toRepoDir repo
-  let cmd = "cloc " ++ repoDir ++ " --csv --quiet"
-  putStrLn cmd
   out <- readProcess "cloc" [repoDir, "--csv", "--quiet"] ""
   let processedOut = BSC.pack $ unlines $ drop 2 $ lines out
-  print processedOut
   let eitherStats = CSV.decode CSV.NoHeader processedOut :: Either String (V.Vector (Int, String, Int, Int, Int))
   return $ case eitherStats of
     Left errMsg -> error errMsg
@@ -109,15 +108,12 @@ aggregateLanguageStats ls = LanguageStats { language = language (head ls)
 computeGlobalStats :: [RepoStats] -> GlobalStats
 computeGlobalStats repoStats = GlobalStats { allLanguages = map aggregateLanguageStats languageGroups
                                            , allRepos = repoStats }
-  where languageGroups = groupBy ((==) `on` language) $ concatMap languages repoStats
+  where languageGroups = groupBy ((==) `on` language) $ sortBy (\a b -> compare (language a) (language b)) $ concatMap languages repoStats
 
 main :: IO ()
 main = do
-  putStrLn "Reading Config"
   config <- readConfig -- Don't care if crashes
   mapM_ pullRepo (repos config)
   perRepoStats <- mapM repoStats (repos config)
-  mapM_ (\repoStats -> do print (name (repo repoStats))
-                          mapM_ print (languages repoStats)) perRepoStats
   let globalStats = computeGlobalStats perRepoStats
-  BS.writeFile statsFile $ encode globalStats
+  BS.writeFile statsFile $ "var stats_json = " `BS.append` encode globalStats
