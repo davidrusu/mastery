@@ -18,6 +18,12 @@
                  "ignore":[]},
                { "name": "Laurier Course Graph",
                  "url": "https://github.com/davidrusu/LaurierCourseGraph.git",
-                 "ignore":["all_courses.htm"]}]
+                 "ignore":["all_courses.htm"]},
+               { "name": "Tic Tac Toe AI",
+                 "url": "https://github.com/davidrusu/TicTacToeAI.git",
+                 "ignore":[]},
+               { "name": "Rooster Engine",
+                 "url": "git@bitbucket.org:DavidRusu/roosterengine-git.git",
+                 "ignore": [] }]
 
 }

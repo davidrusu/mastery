@@ -52,40 +52,40 @@ instance FromJSON Config
 -- Might throw exception
 readConfig :: IO Config
 readConfig = do
-  contents <-BS.readFile configFile -- maybe throws exception
+  contents <-BS.readFile configFile -- might throws exception :/
   config <- case decode' contents of
     Just conf -> return conf
     Nothing   -> error "Problems parsing config file"
   return config
 
-toRepoDir :: Repo -> FilePath
-toRepoDir repo = reposDir </> name
-  where name = reverse $ drop 4 $ reverse $head $ dropWhile ('/' `elem`) $ tails (url repo)
+repoDirName :: Repo -> FilePath
+repoDirName repo = reposDir </> name
+  where name = reverse $ drop 4 $ reverse $head $ dropWhile ('/' `elem`) $ tails (url repo) -- It actually works !!
 
 createRepo :: Repo -> IO ()
 createRepo repo = do
   putStrLn $ "cloning " ++ (name repo)
-  let repoDir = toRepoDir repo
+  let repoDir = repoDirName repo
   _ <- readProcess "git" ["clone", url repo, repoDir] ""
   return ()
 
 updateRepo :: Repo -> IO ()
 updateRepo repo = do
   putStrLn $ "updating " ++ (name repo)
-  let repoDir = toRepoDir repo
+  let repoDir = repoDirName repo
   setCurrentDirectory repoDir
   _ <- readProcess "git" ["pull"] ""
   return ()
 
 pullRepo :: Repo -> IO ()
 pullRepo repo = do
-  let repoDir = toRepoDir repo
+  let repoDir = repoDirName repo
   repoExists <- doesDirectoryExist repoDir
   if repoExists then updateRepo repo else createRepo repo
 
 repoStats :: Repo -> IO (RepoStats)
 repoStats repo = do
-  let repoDir = toRepoDir repo
+  let repoDir = repoDirName repo
   let ignoredFiles = if ignore repo == [] then [] else [ "--exclude-dir="++(intercalate "," (ignore repo)) ]
   out <- readProcess "cloc" ([repoDir, "--csv", "--quiet"]  ++ ignoredFiles) ""
   let processedOut = BSC.pack $ unlines $ drop 2 $ lines out
@@ -98,7 +98,6 @@ repoStats repo = do
                                                                                                     , blank = b
                                                                                                     , comment = c
                                                                                                     , code = loc }) stats }
-
 
 aggregateLanguageStats :: [LanguageStats] -> LanguageStats
 aggregateLanguageStats ls = LanguageStats { language = language (head ls)
