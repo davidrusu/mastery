@@ -2,16 +2,22 @@
     "emails": [ "davidrusu.me@gmail.com",
                 "dave809@gmail.com" ],
     "repos": [ { "name": "Type The Web",
-                 "url": "https://github.com/davidrusu/type-the-web.git" },
+                 "url": "https://github.com/davidrusu/type-the-web.git",
+                 "ignore":["libs"]},
                { "name": "MonadSweeper",
-                 "url": "https://github.com/davidrusu/MonadSweeper.git"},
+                 "url": "https://github.com/davidrusu/MonadSweeper.git",
+                 "ignore":[]},
                { "name": "Mastery",
-                 "url": "https://github.com/davidrusu/mastery.git"},
+                 "url": "https://github.com/davidrusu/mastery.git",
+                 "ignore":[]},
                { "name": "Muzei Desktop",
-                 "url": "https://github.com/davidrusu/muzei-desktop.git"},
+                 "url": "https://github.com/davidrusu/muzei-desktop.git",
+                 "ignore":[]},
                { "name": "Markov Chain",
-                 "url": "https://github.com/davidrusu/markov_chain.git"},
+                 "url": "https://github.com/davidrusu/markov_chain.git",
+                 "ignore":[]},
                { "name": "Laurier Course Graph",
-                 "url": "https://github.com/davidrusu/LaurierCourseGraph.git"}]
+                 "url": "https://github.com/davidrusu/LaurierCourseGraph.git",
+                 "ignore":["all_courses.htm"]}]
 
 }

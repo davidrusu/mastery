@@ -9,7 +9,7 @@ import System.FilePath.Posix ((</>))
 import System.IO.Unsafe (unsafePerformIO)
 
 import Data.Aeson (ToJSON, FromJSON, decode, encode, decode')
-import Data.List (tails, groupBy, sortBy)
+import Data.List (tails, groupBy, sortBy, intercalate)
 import Control.Exception (catch)
 import qualified Data.ByteString.Lazy as BS
 import qualified Data.ByteString.Lazy.Char8 as BSC
@@ -35,7 +35,8 @@ data RepoStats = RepoStats { repo :: Repo
                            , languages :: [LanguageStats] } deriving (Show, Generic)
 
 data Repo = Repo { name :: String,
-                   url :: String } deriving (Show, Generic)
+                   url :: String,
+                   ignore :: [String] } deriving (Show, Generic)
 
 
 data Config = Config { emails :: [String]
@@ -85,7 +86,8 @@ pullRepo repo = do
 repoStats :: Repo -> IO (RepoStats)
 repoStats repo = do
   let repoDir = toRepoDir repo
-  out <- readProcess "cloc" [repoDir, "--csv", "--quiet"] ""
+  let ignoredFiles = if ignore repo == [] then [] else [ "--exclude-dir="++(intercalate "," (ignore repo)) ]
+  out <- readProcess "cloc" ([repoDir, "--csv", "--quiet"]  ++ ignoredFiles) ""
   let processedOut = BSC.pack $ unlines $ drop 2 $ lines out
   let eitherStats = CSV.decode CSV.NoHeader processedOut :: Either String (V.Vector (Int, String, Int, Int, Int))
   return $ case eitherStats of
