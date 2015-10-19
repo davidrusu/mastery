@@ -24,6 +24,25 @@
                  "ignore":[]},
                { "name": "Rooster Engine",
                  "url": "git@bitbucket.org:DavidRusu/roosterengine-git.git",
-                 "ignore": [] }]
+                 "ignore": [] },
+               { "name": "Codes",
+                 "url": "https://github.com/davidrusu/Codes.git",
+                 "ignore":["constellations.html", "moire-dots.html"]},
+               { "name": "Personal Website",
+                 "url": "https://github.com/davidrusu/davidrusu.github.io.git",
+                 "ignore":["elm.js"]},
+               { "name": "The Tower",
+                 "url": "https://github.com/davidrusu/The-Tower.git",
+                 "ignore":[]},
+               { "name": "Routine",
+                 "url": "https://github.com/davidrusu/routine.git",
+                 "ignore":[]},
+               { "name": "Art Database",
+                 "url": "https://github.com/davidrusu/CP363-Art-Database.git",
+                 "ignore":[]},
+               { "name": "Grow",
+                 "url": "https://github.com/davidrusu/Grow.git",
+                 "ignore":[]}
+             ]
 
 }

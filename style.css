@@ -1,53 +1,47 @@
-body {
-    background-color: #3C3F45;
-    color: #ffffff;
-    font-family: courier new;
-}
-
-#title {
-    text-align: center;
-    font-size: 36pt;
-    padding: 50px;
+body, html, div {
+    margin: 0;
 }
 
 #container {
-    width: 75%;
-    margin:auto;
 }
 
 .lang:hover {
-    background-color: #323437;
+    background-color: #f7f7f7; /*#323437;*/
 }
 .lang {
     position: relative;
-    padding: 15px;
+    padding: 5px;
     border-radius: 2px;
+    border-bottom: 1px dashed #000;
 }
 
 .langHead {
     padding: 1;
-    font-size: 18pt;
+    font-size: 10pt;
 }
 
 .langName {
     display: inline-block;
     position: absolute;
-    left: 15px;
+    left: 5px;
 }
 
 .langStats {
     position: absolute;
     display: inline-block;
-    right: 15px;
+    right: 5px;
 }
 
 .progressOuter {
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 3px;
     width: 100%;
-    background-color: #ffffff;
-    height: 18px;
-    border-radius: 2px;
+    /* background-color: #fff; */
+    height: 10px;
+    border-radius: 0px;
     overflow: hidden;
+    border-right: 1px solid black;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJElEQVQIW2NkwAQ+jGhiPgwMDFuQBcECIEUwQbgATBBFACQIALmgBFKywiuGAAAAAElFTkSuQmCC) repeat;
 }
 
 .progressInner {
@@ -56,12 +50,14 @@ body {
 }
 
 .repoStats {
+    font-size: 8pt;
 }
 
 .repoName {
+    text-align: left;
     display: inline-block;
-    color: #ffffff;
-    width: 40%;
+    color: inherit;
+    width: 20%;
 }
 
 .repoCode {
@@ -71,9 +67,40 @@ body {
 
 .repoProgress {
     display: inline-block;
-    width: 50%;
+    width: 70%;
 }
 
 .perRepoStats {
     width: 100%;
+}
+
+#projectscontainer {
+    vertical-align:top;
+    display: inline-block;
+    width: 70%;
+}
+
+#languagestatscontainer {
+    vertical-align:top;
+    display: inline-block;
+    width: 50%;
+    margin: auto;
+}
+
+#quote_outer {
+    font-size: 10pt;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #000;
+}
+
+#quote {
+    margin: auto;
+    width: 50%;
+    text-align: left;
+    /* border-top: 1px dashed #000; */
+}
+
+#contentcontainer {
+    text-align: center;
+    padding-top: 50px;
 }

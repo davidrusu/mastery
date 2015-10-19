@@ -19,9 +19,11 @@ import qualified Data.Vector as V
 import Data.Function (on)
 
 homeDir = unsafePerformIO getCurrentDirectory
-configFile = homeDir </> ".mastery.json"
+configFile = homeDir </> "mastery.json"
 reposDir = homeDir </> ".mastery/"
 statsFile = homeDir </> "stats.json"
+configJSFile = homeDir </> "config.js"
+cloc = homeDir </> "cloc"
 data GlobalStats = GlobalStats { allLanguages :: [LanguageStats]
                                , allRepos :: [RepoStats] } deriving (Show, Generic)
 
@@ -46,6 +48,7 @@ instance ToJSON GlobalStats
 instance ToJSON Repo
 instance ToJSON LanguageStats
 instance ToJSON RepoStats
+instance ToJSON Config
 instance FromJSON Repo
 instance FromJSON Config
 
@@ -87,7 +90,7 @@ repoStats :: Repo -> IO (RepoStats)
 repoStats repo = do
   let repoDir = repoDirName repo
   let ignoredFiles = if ignore repo == [] then [] else [ "--exclude-dir="++(intercalate "," (ignore repo)) ]
-  out <- readProcess "cloc" ([repoDir, "--csv", "--quiet"]  ++ ignoredFiles) ""
+  out <- readProcess cloc ([repoDir, "--csv", "--quiet"]  ++ ignoredFiles) ""
   let processedOut = BSC.pack $ unlines $ drop 2 $ lines out
   let eitherStats = CSV.decode CSV.NoHeader processedOut :: Either String (V.Vector (Int, String, Int, Int, Int))
   return $ case eitherStats of
@@ -118,3 +121,4 @@ main = do
   perRepoStats <- mapM repoStats (repos config)
   let globalStats = computeGlobalStats perRepoStats
   BS.writeFile statsFile $ "var stats_json = " `BS.append` encode globalStats
+  BS.writeFile configJSFile $ "var config = " `BS.append` encode config
