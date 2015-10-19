@@ -9,7 +9,7 @@
                  "ignore":[]},
                { "name": "Mastery",
                  "url": "https://github.com/davidrusu/mastery.git",
-                 "ignore":[]},
+                 "ignore":["cloc"]},
                { "name": "Muzei Desktop",
                  "url": "https://github.com/davidrusu/muzei-desktop.git",
                  "ignore":[]},
