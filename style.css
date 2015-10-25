@@ -83,7 +83,7 @@ body, html, div {
 #languagestatscontainer {
     vertical-align:top;
     display: inline-block;
-    width: 50%;
+    width: 75%;
     margin: auto;
 }
 
@@ -95,7 +95,7 @@ body, html, div {
 
 #quote {
     margin: auto;
-    width: 50%;
+    width: 75%;
     text-align: left;
     /* border-top: 1px dashed #000; */
 }

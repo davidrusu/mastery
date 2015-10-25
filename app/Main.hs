@@ -42,7 +42,8 @@ data Repo = Repo { name :: String,
 
 
 data Config = Config { emails :: [String]
-                     , repos :: [Repo] } deriving (Show, Generic)
+                     , repos :: [Repo]
+                     , ignoredLanguages :: [String] } deriving (Show, Generic)
 
 instance ToJSON GlobalStats
 instance ToJSON Repo
@@ -112,13 +113,18 @@ aggregateLanguageStats ls = LanguageStats { language = language (head ls)
 computeGlobalStats :: [RepoStats] -> GlobalStats
 computeGlobalStats repoStats = GlobalStats { allLanguages = map aggregateLanguageStats languageGroups
                                            , allRepos = repoStats }
-  where languageGroups = groupBy ((==) `on` language) $ sortBy (\a b -> compare (language a) (language b)) $ concatMap languages repoStats
+  where candidateLanguages = concatMap languages repoStats
+        sortedStats = sortBy (\a b -> compare (language a) (language b)) candidateLanguages
+        languageGroups = groupBy ((==) `on` language) $ sortedStats
+
+removeIgnoredLanguages :: Config -> GlobalStats -> GlobalStats
+removeIgnoredLanguages config gs = gs { allLanguages = filter (\ls -> not ((language ls) `elem` (ignoredLanguages config))) $ allLanguages gs }
 
 main :: IO ()
 main = do
   config <- readConfig -- Don't care if crashes
   mapM_ pullRepo (repos config)
   perRepoStats <- mapM repoStats (repos config)
-  let globalStats = computeGlobalStats perRepoStats
+  let globalStats = removeIgnoredLanguages config $ computeGlobalStats perRepoStats
   BS.writeFile statsFile $ "var stats_json = " `BS.append` encode globalStats
   BS.writeFile configJSFile $ "var config = " `BS.append` encode config

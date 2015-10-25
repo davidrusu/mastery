@@ -18,7 +18,7 @@
                  "ignore":[]},
                { "name": "Laurier Course Graph",
                  "url": "https://github.com/davidrusu/LaurierCourseGraph.git",
-                 "ignore":["all_courses.htm"]},
+                 "ignore":["all_courses.htm", "bower_components"]},
                { "name": "Tic Tac Toe AI",
                  "url": "https://github.com/davidrusu/TicTacToeAI.git",
                  "ignore":[]},
@@ -43,6 +43,6 @@
                { "name": "Grow",
                  "url": "https://github.com/davidrusu/Grow.git",
                  "ignore":[]}
-             ]
-
+             ],
+  "ignoredLanguages": [ "XML", "JSON", "PowerShell", "Ant", "YAML" ]
 }
