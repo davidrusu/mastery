@@ -26,7 +26,7 @@ executable mastery
   build-depends:       base
                      , mastery
                      , process
-                     , aeson >= 0.8 && < 0.9
+                     , aeson >= 0.10 && < 0.11
                      , bytestring >= 0.10 && < 0.11
                      , filepath >= 1.4 && < 1.5
                      , directory >= 1.2 && < 1.3

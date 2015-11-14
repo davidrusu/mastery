@@ -44,5 +44,5 @@
                  "url": "https://github.com/davidrusu/Grow.git",
                  "ignore":[]}
              ],
-  "ignoredLanguages": [ "XML", "JSON", "PowerShell", "Ant", "YAML" ]
+  "ignoredLanguages": [ "XML", "JSON", "PowerShell", "Ant", "YAML", "HTML" ]
 }
